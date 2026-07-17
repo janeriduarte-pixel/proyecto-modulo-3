@@ -1,36 +1,32 @@
-from datos import *
-from funciones import *
+#conectar los dos archivos a este
+import seguridad
+import procesos
 
-def main():
-    # Primero se valida el acceso con las variables traídas de datos.py
-    if not login(USUARIO, PASSWORD):
+def ejecutar_sistema():
+# Primero se valida la seguridad (Login)
+    if not seguridad.login():
+        print("Cerrando aplicación por seguridad. 🏁")
         return
-    
-    # Menú principal interactivo
+
+# Bucle principal si el login fue exitoso
     while True:
-        print("""
-##############################
-    INSCRIPCIÓN DE CURSOS
-##############################
-1.- Inscribir alumno
-2.- Resumen de inscripciones
-3.- Salir
-        """)
+        print("\n🏎️  SISTEMA F1 - AFICIONADOS 🏎️")
+        print("1. Inscribir Aficionado")
+        print("2. Revisar Inscritos")
+        print("3. Salir")
         
-        opcion = input("Ingrese una opción: ")
-        
+        opcion = input("Seleccione una opción (1-3): ").strip()
+
         if opcion == "1":
-            inscribir_alumno(cursos, inscripciones, alumnos)
-            
+            procesos.inscribir_aficionado()
         elif opcion == "2":
-            mostrar_resumen(inscripciones, alumnos)
-            
+            procesos.revisar_inscritos()
         elif opcion == "3":
-            print("Programa finalizado. ¡Gracias!")
-            break
-            
+            print("\n🏁 Cerrando sesión. ¡Nos vemos en los Boxes!")
+            break  
+# Break para controlar el flujo
         else:
-            print("Oposición inválida. Intente nuevamente.")
+            print("⚠️ Opción no válida. Intente de nuevo.")
 
 if __name__ == "__main__":
-    main()
+    ejecutar_sistema()
